@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { getMessages, toggleLike } from "../Actions/actions";
 import { connect } from "react-redux";
 import Message from "./Message";
-import { Container } from "semantic-ui-react";
+import { Container, Card, Grid } from "semantic-ui-react";
 import { Switch, Route } from "react-router-dom";
 
 export class MessagesList extends Component {
@@ -59,16 +59,35 @@ export class MessagesList extends Component {
     return (
       <React.Fragment>
         <h2>Messaging Feed</h2>
+        <Grid.Column
+        style={{
+          display:"flex",
+          flexDirection:"column",
+          justifyContent:"space-between"}}>
+        <Card fluid 
+        centered
+        styled={{
+          backgroundColor:"pink",
+          border:"4px",
+          borderColor: "green",
+          width: "50em",
+          padding:"1.5em",
+          marginBottom:"1em",
+          height:"auto"
+        }} 
+        >
         {this.props.messages.map(message => (
           <Message
-            key={message.id}
-            text={message.text}
-            username={message.username}
-            toggleLike={() => this.props.toggleLike(message.id)}
-            numOfLikes={message.likes.length}
-            isLiked={message.isLiked}
+          key={message.id}
+          text={message.text}
+          username={message.username}
+          toggleLike={() => this.props.toggleLike(message.id)}
+          numOfLikes={message.likes.length}
+          isLiked={message.isLiked}
           />
-        ))}
+          ))}
+          </Card>
+          </Grid.Column>
       </React.Fragment>
     );
   }
@@ -97,7 +116,6 @@ const mapStateToProps = state => {
     })
   };
 };
-
 const mapDispatchToProps = dispatch => {
   return {
     getMessages: () => {

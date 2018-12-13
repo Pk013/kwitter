@@ -6,7 +6,22 @@ import { Divider, Card, Grid, GridColumn } from "semantic-ui-react";
 class Message extends Component {
   render() {
     return (
-      <Fragment>
+      <Card
+      backgroundColor="green">
+        <Grid.Row
+        columns={1}
+        style={{
+          
+          display:"flex",
+          flexDirection:"row",
+          justifyContent:"space-between"}}>
+          </Grid.Row>
+            <Grid.Column
+            style={{
+              display: "flex",
+              alignSelf: "center"
+            }}>
+          </Grid.Column>
         {/* //   place props in styling, from fragment section. */}
         <div>{this.props.text}</div>
         <div>Kweeted by {this.props.username}</div>
@@ -14,7 +29,8 @@ class Message extends Component {
           {this.props.isLiked ? "Unlike" : "Like"}
         </button>
         <p>Likes: {this.props.numOfLikes}</p>
-      </Fragment>
+        
+      </Card>
     );
   }
 }
