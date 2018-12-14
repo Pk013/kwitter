@@ -2,7 +2,17 @@ import React, { Component, Fragment } from "react";
 import { getMessages, toggleLike } from "../Actions/actions";
 import { connect } from "react-redux";
 import Message from "./Message";
-import { Container, Card, Grid } from "semantic-ui-react";
+import {
+  Container,
+  Button,
+  Card,
+  Divider,
+  Grid,
+  Header,
+  Image,
+  Menu,
+  Segment
+} from "semantic-ui-react";
 import { Switch, Route } from "react-router-dom";
 
 export class MessagesList extends Component {
@@ -58,36 +68,22 @@ export class MessagesList extends Component {
   render() {
     return (
       <React.Fragment>
-        <h2>Messaging Feed</h2>
-        <Grid.Column
-        style={{
-          display:"flex",
-          flexDirection:"column",
-          justifyContent:"space-between"}}>
-        <Card fluid 
-        centered
-        styled={{
-          backgroundColor:"pink",
-          border:"4px",
-          borderColor: "green",
-          width: "50em",
-          padding:"1.5em",
-          marginBottom:"1em",
-          height:"auto"
-        }} 
-        >
-        {this.props.messages.map(message => (
-          <Message
-          key={message.id}
-          text={message.text}
-          username={message.username}
-          toggleLike={() => this.props.toggleLike(message.id)}
-          numOfLikes={message.likes.length}
-          isLiked={message.isLiked}
-          />
-          ))}
-          </Card>
-          </Grid.Column>
+        <Grid container stackable>
+          <Grid.Row>
+            <Grid.Column>
+              {this.props.messages.map(message => (
+                <Message
+                  key={message.id}
+                  text={message.text}
+                  username={message.username}
+                  toggleLike={() => this.props.toggleLike(message.id)}
+                  numOfLikes={message.likes.length}
+                  isLiked={message.isLiked}
+                />
+              ))}
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </React.Fragment>
     );
   }
@@ -96,7 +92,7 @@ export class MessagesList extends Component {
 const mapStateToProps = state => {
   return {
     messages: state.messages.map(message => {
-      const username = state.users[message.userId].username || "unknown"; 
+      const username = state.users[message.userId].username || "unknown";
       const like = message.likes.find(
         like => like.userId === state.authentication.id
       );
