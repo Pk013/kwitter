@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
-import { Form, TextArea, Button } from "semantic-ui-react";
+import { Button, Form, TextArea } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { Switch, Route } from "react-router-dom";
 import { composeMessage } from "../Actions/actions";
 
 class ComposeMessage extends React.Component {
@@ -20,10 +19,10 @@ class ComposeMessage extends React.Component {
     }
   };
 
-  handleComposeMessageProfileButton = event => {
-    this.props.composeMessage(this.state.text);
-    this.setState({ text: "" });
-  };
+  // handleComposeMessageProfileButton = event => {
+  //   this.props.composeMessage(this.state.text);
+  //   this.setState({ text: "" });
+  // };
 
   displayFeed = () => {
     return (
@@ -37,7 +36,7 @@ class ComposeMessage extends React.Component {
           placeholder="What would you like to Kweet about today?"
           onChange={this.handleMessageSubmit}
           value={this.state.text}
-          onKeyPress={this.handleComposeMessageProfileEnter}
+          // onKeyPress={this.handleComposeMessageProfileEnter}
           maxLength="255"
           style={{ maxWidth: "36em" }}
         />
